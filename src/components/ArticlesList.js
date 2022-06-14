@@ -1,12 +1,15 @@
 import ArticleSummaryCard from "./ArticleSummaryCard";
 import { useState, useEffect } from "react";
 import { getAllArticles } from "../utils/api";
+import { useParams } from "react-router-dom";
 
 const ArticlesList = () => {
   const [articleList, setArticleList] = useState([]);
   const [visibileArticles, setVisibleArticles] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [loadMoreArticles, setLoadMoreArticles] = useState(false);
+  const [currentTopic, setCurrentTopic] = useState("");
+  const { topic } = useParams();
 
   const updateVisibleArticles = () => {
     setVisibleArticles((currentVisibleList) => {
@@ -33,8 +36,8 @@ const ArticlesList = () => {
   };
 
   useEffect(() => {
-    if (pageNumber === 0) {
-      getAllArticles()
+    if (currentTopic !== topic) {
+      getAllArticles(topic)
         .then((articles) => {
           setArticleList(() => {
             return articles;
@@ -43,8 +46,11 @@ const ArticlesList = () => {
         .then(() => {
           setLoadMoreArticles(true);
         });
+      setCurrentTopic(topic);
+      setVisibleArticles([]);
+      setPageNumber(0);
     }
-  });
+  }, [topic]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -58,6 +64,7 @@ const ArticlesList = () => {
 
   return (
     <>
+      <h2 className="sub-header">{`Showing ${topic.toUpperCase()} articles`}</h2>
       <ul className="article-list">
         {visibileArticles.map((article) => {
           return (

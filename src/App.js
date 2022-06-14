@@ -11,10 +11,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="header-container">
-        <Header />
-        <BurgerNav />
-      </div>
+      <Header />
+      <BurgerNav />
       <Routes>
         <Route
           path="/"
@@ -26,6 +24,7 @@ function App() {
           }
         />
         <Route path="/articles" element={<Articles />} />
+        <Route path="/articles/:topic" element={<Articles />} />
       </Routes>
     </BrowserRouter>
   );

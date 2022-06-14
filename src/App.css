@@ -2,10 +2,6 @@
   margin: 0%;
 }
 
-.header-container {
-  background-color: greenyellow;
-}
-
 .sort-container {
   background-color: purple;
   color: white;
@@ -30,6 +26,19 @@
   text-align: center;
   margin: 0;
 }
+
+.nav-list {
+  height: 7em;
+  color: black;
+}
+.closed {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  visibility: none;
+  z-index: -1;
+}
+
 .article-list {
   background-color: yellow;
   display: flex;
