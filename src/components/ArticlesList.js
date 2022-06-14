@@ -64,7 +64,11 @@ const ArticlesList = () => {
 
   return (
     <>
-      <h2 className="sub-header">{`Showing ${topic.toUpperCase()} articles`}</h2>
+      {topic !== undefined ? (
+        <h2 className="sub-header">{`Showing ${topic.toUpperCase()} articles`}</h2>
+      ) : (
+        ""
+      )}
       <ul className="article-list">
         {visibileArticles.map((article) => {
           return (
