@@ -26,5 +26,7 @@ export const getArticleByID = (article_id) => {
     .then((response) => {
       return response.data.article;
     })
-    .catch((err) => {});
+    .catch((err) => {
+      throw new Error("no article");
+    });
 };

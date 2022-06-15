@@ -8,21 +8,28 @@ import AddComment from "./AddComment";
 
 const Article = () => {
   const [currentArticle, setCurrentArticle] = useState({});
+  const [articleExists, setArticleExists] = useState(true);
   const { article_id } = useParams();
 
   useEffect(() => {
-    getArticleByID(article_id).then((fetchedArticle) => {
-      setCurrentArticle(fetchedArticle);
-    });
+    getArticleByID(article_id)
+      .then((fetchedArticle) => {
+        setCurrentArticle(fetchedArticle);
+      })
+      .catch((err) => {
+        setArticleExists(false);
+      });
   }, [article_id]);
 
-  return (
+  return articleExists === true ? (
     <>
       <ArticleDetails currentArticle={currentArticle} />
       <Votes votes={currentArticle.votes} />
       <CommentsList />
       <AddComment />
     </>
+  ) : (
+    <h2>Error 404: Article Not Found</h2>
   );
 };
 
