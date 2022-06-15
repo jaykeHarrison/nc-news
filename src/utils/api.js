@@ -19,3 +19,14 @@ export const getAllTopics = () => {
     return response.data.topics;
   });
 };
+
+export const getArticleByID = (article_id) => {
+  return ncNewsAPI
+    .get(`/articles/${article_id}`)
+    .then((response) => {
+      return response.data.article;
+    })
+    .catch((err) => {
+      throw new Error("no article");
+    });
+};
