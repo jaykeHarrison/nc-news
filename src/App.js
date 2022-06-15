@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Articles from "./components/Articles";
+import Article from "./components/Article";
 
 function App() {
   const [signedInUser, setSignedInUser] = useState("");
@@ -25,6 +26,7 @@ function App() {
         />
         <Route path="/articles" element={<Articles />} />
         <Route path="/articles/:topic" element={<Articles />} />
+        <Route path="/articles/article/:article_id" element={<Article />} />
       </Routes>
     </BrowserRouter>
   );
