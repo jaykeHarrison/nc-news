@@ -12,11 +12,8 @@ const ArticlesList = () => {
   const [currentTopic, setCurrentTopic] = useState("");
   const { topic } = useParams();
 
-  console.log(currentPageNumber);
-
   const handlePageChange = (event) => {
     event.preventDefault();
-    console.log(event);
     setCurrentPageNumber(event.target.innerText);
     setLoadMoreArticles(true);
   };
@@ -48,8 +45,6 @@ const ArticlesList = () => {
       setVisibleArticles(() => {
         const indexToAddFrom = (currentPageNumber - 1) * 10;
         const indexToAddTo = indexToAddFrom + 10;
-
-        console.log(articleList.slice(indexToAddFrom, indexToAddTo));
 
         return articleList.slice(indexToAddFrom, indexToAddTo);
       });

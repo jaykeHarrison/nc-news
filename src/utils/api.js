@@ -21,13 +21,10 @@ export const getAllTopics = () => {
 };
 
 export const getArticleByID = (article_id) => {
-  console.log(article_id);
   return ncNewsAPI
     .get(`/articles/${article_id}`)
     .then((response) => {
       return response.data.article;
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => {});
 };
