@@ -12,12 +12,15 @@ const NavList = ({ isOpen }) => {
   }, [isOpen]);
 
   return (
-    <div className={`nav-list ${isOpen === true ? "open" : "closed"}`}>
+    <ul className={`nav-list ${isOpen === true ? "open" : "closed"}`}>
+      <Link key="home" to={"/"}>
+        <p>Home</p>
+      </Link>
+      <Link key="articles" to={"/articles"}>
+        <p>Articles</p>
+      </Link>
       <p>topics:</p>
       <ul>
-        <Link key="home" to={"/"}>
-          Home
-        </Link>
         {topicList.map((topic) => {
           return (
             <Link key={topic.slug} to={`/articles/${topic.slug}`}>
@@ -26,7 +29,7 @@ const NavList = ({ isOpen }) => {
           );
         })}
       </ul>
-    </div>
+    </ul>
   );
 };
 

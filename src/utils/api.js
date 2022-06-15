@@ -9,7 +9,6 @@ export const getAllArticles = (topic) => {
   if (topic !== undefined) {
     path += `/?topic=${topic}`;
   }
-  console.log(path);
   return ncNewsAPI.get(path).then((response) => {
     return response.data.articles;
   });
@@ -17,7 +16,6 @@ export const getAllArticles = (topic) => {
 
 export const getAllTopics = () => {
   return ncNewsAPI.get("/topics").then((response) => {
-    console.log(response);
     return response.data.topics;
   });
 };
