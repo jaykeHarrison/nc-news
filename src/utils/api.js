@@ -51,3 +51,20 @@ export const getCommentsByArticleID = (article_id) => {
     return response.data.comments;
   });
 };
+
+export const getAllUsers = () => {
+  return ncNewsAPI.get("/users").then((response) => {
+    return response.data.users;
+  });
+};
+
+export const addCommentToArticleByID = (article_id, username, body) => {
+  return ncNewsAPI
+    .post(`/articles/${article_id}/comments`, {
+      username,
+      body,
+    })
+    .then((response) => {
+      return response.data.addedComment;
+    });
+};
