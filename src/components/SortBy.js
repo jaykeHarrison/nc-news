@@ -14,7 +14,7 @@ const SortBy = () => {
   return (
     <>
       <div className="sort-container">
-        <label for="sortBy">Sort by: </label>
+        <label htmlFor="sortBy">Sort by: </label>
         <select name="sortBy" value={sort} onChange={handleSelect}>
           <option value="date">date</option>
           <option value="author">author</option>

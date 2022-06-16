@@ -1,11 +1,14 @@
 import CommentCard from "./CommentCard";
 import { useState, useEffect } from "react";
 import { getCommentsByArticleID } from "../utils/api";
+import AddCommentButton from "./AddCommentButton";
 
 const CommentsList = ({ article_id }) => {
   const [commentList, setCommentList] = useState([]);
   const [visibleComments, setVisibleComments] = useState([]);
   const [maxComments, setMaxComments] = useState(false);
+
+  console.log(visibleComments);
 
   const handleClick = () => {
     if (visibleComments.length < commentList.length) {
@@ -48,6 +51,10 @@ const CommentsList = ({ article_id }) => {
       ) : (
         <p>That's all the comments</p>
       )}
+      <AddCommentButton
+        article_id={article_id}
+        setVisibleComments={setVisibleComments}
+      />
     </>
   );
 };
