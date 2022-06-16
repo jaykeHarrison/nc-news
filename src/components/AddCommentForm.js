@@ -26,7 +26,11 @@ const AddCommentForm = ({ article_id, setVisibleComments }) => {
   return (
     <form onSubmit={handleSubmit}>
       <label for="comment-field">Write Comment</label>
-      <input type="input" id="comment-field" onChange={handleInput}></input>
+      <textarea
+        type="input"
+        id="comment-field"
+        onChange={handleInput}
+      ></textarea>
       <input type="submit" value="Submit" />
     </form>
   );
