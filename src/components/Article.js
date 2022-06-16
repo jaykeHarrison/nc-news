@@ -22,12 +22,12 @@ const Article = () => {
   }, [article_id]);
 
   return articleExists === true ? (
-    <>
+    <div className="article">
       <ArticleDetails currentArticle={currentArticle} />
       <Votes votes={currentArticle.votes} article_id={article_id} />
-      <CommentsList />
+      <CommentsList article_id={article_id} />
       <AddComment />
-    </>
+    </div>
   ) : (
     <h2>Error 404: Article Not Found</h2>
   );

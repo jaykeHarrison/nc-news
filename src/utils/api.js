@@ -45,3 +45,9 @@ export const changeArticleVotes = (article_id, changeInVotes) => {
       throw new Error(err);
     });
 };
+
+export const getCommentsByArticleID = (article_id) => {
+  return ncNewsAPI.get(`/articles/${article_id}/comments`).then((response) => {
+    return response.data.comments;
+  });
+};
