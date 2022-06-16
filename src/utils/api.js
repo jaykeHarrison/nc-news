@@ -30,3 +30,18 @@ export const getArticleByID = (article_id) => {
       throw new Error("no article");
     });
 };
+
+export const changeArticleVotes = (article_id, changeInVotes) => {
+  const requestBody = {
+    inc_votes: changeInVotes,
+  };
+
+  return ncNewsAPI
+    .patch(`/articles/${article_id}`, requestBody)
+    .then((response) => {
+      return response.data.updatedArticle.votes;
+    })
+    .catch((err) => {
+      throw new Error(err);
+    });
+};

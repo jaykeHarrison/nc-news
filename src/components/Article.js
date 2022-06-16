@@ -24,7 +24,7 @@ const Article = () => {
   return articleExists === true ? (
     <>
       <ArticleDetails currentArticle={currentArticle} />
-      <Votes votes={currentArticle.votes} />
+      <Votes votes={currentArticle.votes} article_id={article_id} />
       <CommentsList />
       <AddComment />
     </>
