@@ -65,7 +65,9 @@ const CommentsList = ({ article_id }) => {
         })}
       </ul>
       {!maxComments ? (
-        <button onClick={handleClick}>View More Comments</button>
+        <button className="view-more-comments-button" onClick={handleClick}>
+          View More Comments
+        </button>
       ) : (
         <p>That's all the comments</p>
       )}
