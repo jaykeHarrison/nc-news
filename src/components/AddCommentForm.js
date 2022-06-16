@@ -6,8 +6,6 @@ const AddCommentForm = ({ article_id, setVisibleComments }) => {
   const [commentText, setCommentText] = useState("");
   const { signedInUser } = useContext(UserContext);
 
-  console.log(commentText);
-
   const handleInput = (event) => {
     setCommentText(event.target.value);
   };

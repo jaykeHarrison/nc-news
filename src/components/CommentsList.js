@@ -8,8 +8,6 @@ const CommentsList = ({ article_id }) => {
   const [visibleComments, setVisibleComments] = useState([]);
   const [maxComments, setMaxComments] = useState(false);
 
-  console.log(visibleComments);
-
   const handleClick = () => {
     if (visibleComments.length < commentList.length) {
       setVisibleComments((currentVisibleComments) => {
