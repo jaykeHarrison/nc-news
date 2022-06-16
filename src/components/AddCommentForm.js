@@ -16,7 +16,7 @@ const AddCommentForm = ({ article_id, setVisibleComments }) => {
     addCommentToArticleByID(article_id, signedInUser, commentText).then(
       (addedComment) => {
         setVisibleComments((currVisibleComments) => {
-          return [...currVisibleComments, addedComment];
+          return [addedComment, ...currVisibleComments];
         });
         setCommentText("");
       }

@@ -30,7 +30,14 @@ const CommentsList = ({ article_id }) => {
   useEffect(() => {
     getCommentsByArticleID(article_id)
       .then((comments) => {
-        setCommentList(comments);
+        setCommentList(
+          comments.sort((currArticle, nextArticle) => {
+            return (
+              new Date(nextArticle.created_at) -
+              new Date(currArticle.created_at)
+            );
+          })
+        );
       })
       .then(() => {});
   }, [article_id]);
@@ -41,6 +48,16 @@ const CommentsList = ({ article_id }) => {
 
   return (
     <>
+      {signedInUser !== "" ? (
+        <AddCommentButton
+          article_id={article_id}
+          setVisibleComments={setVisibleComments}
+        />
+      ) : (
+        <Link to="/">
+          <p>Please sign in to post comments</p>
+        </Link>
+      )}
       <h3>Comments:</h3>
       <ul>
         {visibleComments.map((comment) => {
@@ -51,16 +68,6 @@ const CommentsList = ({ article_id }) => {
         <button onClick={handleClick}>View More Comments</button>
       ) : (
         <p>That's all the comments</p>
-      )}
-      {signedInUser !== "" ? (
-        <AddCommentButton
-          article_id={article_id}
-          setVisibleComments={setVisibleComments}
-        />
-      ) : (
-        <Link to="/">
-          <p>Please sign in to post comments</p>
-        </Link>
       )}
     </>
   );
