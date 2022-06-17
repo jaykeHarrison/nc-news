@@ -2,6 +2,7 @@ import ArticleSummaryCard from "./ArticleSummaryCard";
 import { useState, useEffect } from "react";
 import { getAllArticles } from "../utils/api";
 import { useParams } from "react-router-dom";
+import PageNotFound from "./NotFound";
 
 const ArticlesList = ({ sort, order }) => {
   const [articleList, setArticleList] = useState([]);
@@ -9,6 +10,8 @@ const ArticlesList = ({ sort, order }) => {
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [allPageNumbers, setAllPageNumbers] = useState([]);
   const [loadMoreArticles, setLoadMoreArticles] = useState(false);
+  const [articlesNotFound, setArticlesNotFound] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentTopic, setCurrentTopic] = useState("");
   const { topic } = useParams();
 
@@ -32,9 +35,16 @@ const ArticlesList = ({ sort, order }) => {
 
           return [...Array(totalPages).keys()].map((index) => index + 1);
         });
+        setIsLoading(false);
       })
       .then(() => {
         setLoadMoreArticles(true);
+      })
+      .catch((err) => {
+        if (err) {
+          setIsLoading(false);
+          setArticlesNotFound(true);
+        }
       });
   }, [topic, sort, order]);
 
@@ -54,29 +64,40 @@ const ArticlesList = ({ sort, order }) => {
     }
   }, [loadMoreArticles]);
 
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
+
   return (
     <>
-      {topic !== undefined ? (
+      {topic !== undefined && articlesNotFound === false ? (
         <h2 className="sub-header">{`Showing ${topic.toUpperCase()} articles`}</h2>
+      ) : null}
+      {articlesNotFound === true ? (
+        <PageNotFound whatNotFound="Topic" />
       ) : (
-        ""
+        <>
+          <ul className="page-numbers">
+            {allPageNumbers.map((pageNumber) => {
+              return (
+                <button key={pageNumber} onClick={handlePageChange}>
+                  {pageNumber}
+                </button>
+              );
+            })}
+          </ul>
+          <ul className="article-list">
+            {visibileArticles.map((article) => {
+              return (
+                <ArticleSummaryCard
+                  key={article.article_id}
+                  article={article}
+                />
+              );
+            })}
+          </ul>
+        </>
       )}
-      <ul className="page-numbers">
-        {allPageNumbers.map((pageNumber) => {
-          return (
-            <button key={pageNumber} onClick={handlePageChange}>
-              {pageNumber}
-            </button>
-          );
-        })}
-      </ul>
-      <ul className="article-list">
-        {visibileArticles.map((article) => {
-          return (
-            <ArticleSummaryCard key={article.article_id} article={article} />
-          );
-        })}
-      </ul>
     </>
   );
 };

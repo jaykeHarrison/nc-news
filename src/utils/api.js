@@ -10,9 +10,14 @@ export const getAllArticles = (sort_by, order, topic) => {
     path += `&topic=${topic}`;
   }
 
-  return ncNewsAPI.get(path).then((response) => {
-    return response.data.articles;
-  });
+  return ncNewsAPI
+    .get(path)
+    .then((response) => {
+      return response.data.articles;
+    })
+    .catch((err) => {
+      throw new Error(err.response.status);
+    });
 };
 
 export const getAllTopics = () => {
