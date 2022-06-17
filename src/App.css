@@ -92,6 +92,10 @@
   margin-bottom: 0.5em;
 }
 
+.comment-card-deleted {
+  opacity: 50%;
+}
+
 .comment-card.signed-in-user {
   background-color: lightgreen;
 }
