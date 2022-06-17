@@ -4,7 +4,6 @@ import { getArticleByID } from "../utils/api";
 import ArticleDetails from "./ArticleDetails";
 import CommentsList from "./CommentsList";
 import Votes from "./Votes";
-import AddComment from "./AddComment";
 
 const Article = () => {
   const [currentArticle, setCurrentArticle] = useState({});
@@ -26,7 +25,6 @@ const Article = () => {
       <ArticleDetails currentArticle={currentArticle} />
       <Votes votes={currentArticle.votes} article_id={article_id} />
       <CommentsList article_id={article_id} />
-      <AddComment />
     </div>
   ) : (
     <h2>Error 404: Article Not Found</h2>

@@ -88,6 +88,28 @@
   margin-bottom: 0.5em;
 }
 
+.comment-card.signed-in-user {
+  background-color: lightgreen;
+}
+
+.add-comment-button,
+.view-more-comments-button {
+  background-color: lightgreen;
+  width: 100%;
+  height: 3em;
+  font-size: x-large;
+}
+
+.add-comment-button.clicked {
+  display: none;
+}
+
+#comment-field {
+  font-size: larger;
+  height: 6em;
+  width: 100%;
+}
+
 ul {
   padding: 0;
   list-style-type: none;
