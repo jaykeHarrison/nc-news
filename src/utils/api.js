@@ -71,7 +71,7 @@ export const addCommentToArticleByID = (article_id, username, body) => {
 };
 
 export const deleteComment = (comment_id) => {
-  return ncNewsAPI.delete(`/comments/${comment_id}sdjfsdjf`).catch((err) => {
+  return ncNewsAPI.delete(`/comments/${comment_id}`).catch((err) => {
     if (err) {
       throw new Error("delete failed");
     }
