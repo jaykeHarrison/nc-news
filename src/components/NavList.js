@@ -13,18 +13,22 @@ const NavList = ({ isOpen }) => {
 
   return (
     <ul className={`nav-list ${isOpen === true ? "open" : "closed"}`}>
-      <Link key="home" to={"/"}>
-        <p>Home</p>
+      <Link key="home" to={"/"} style={{ textDecoration: "none" }}>
+        <p className="nav-button">Home</p>
       </Link>
-      <Link key="articles" to={"/articles"}>
-        <p>Articles</p>
+      <Link key="articles" to={"/articles"} style={{ textDecoration: "none" }}>
+        <p className="nav-button">Articles</p>
       </Link>
-      <p>topics:</p>
+      <p className="nav-button">topics:</p>
       <ul>
         {topicList.map((topic) => {
           return (
-            <Link key={topic.slug} to={`/articles/${topic.slug}`}>
-              <li>{topic.slug}</li>
+            <Link
+              key={topic.slug}
+              to={`/articles/${topic.slug}`}
+              style={{ textDecoration: "none" }}
+            >
+              <li className="nav-button">{topic.slug}</li>
             </Link>
           );
         })}

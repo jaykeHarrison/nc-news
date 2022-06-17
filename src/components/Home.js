@@ -12,12 +12,12 @@ const Home = () => {
   return (
     <>
       <SubHeader title="Welcome to NC News" />
-      <WhatsHotWhatsNot />
       <SignedInStatus />
       {!signedInUser ? <UserDropDownList /> : null}
       <Link to="/articles">
-        <p>VIEW ALL ARTICLES</p>
+        <p id="view-all-articles">VIEW ALL ARTICLES</p>
       </Link>
+      <WhatsHotWhatsNot />
     </>
   );
 };
