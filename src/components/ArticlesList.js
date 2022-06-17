@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { getAllArticles } from "../utils/api";
 import { useParams } from "react-router-dom";
 
-const ArticlesList = () => {
+const ArticlesList = ({ sort, order }) => {
   const [articleList, setArticleList] = useState([]);
   const [visibileArticles, setVisibleArticles] = useState([]);
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
@@ -19,26 +19,24 @@ const ArticlesList = () => {
   };
 
   useEffect(() => {
-    if (currentTopic !== topic) {
-      setCurrentTopic(topic);
-      setVisibleArticles([]);
-      setCurrentPageNumber(1);
-      getAllArticles(topic)
-        .then((articles) => {
-          setArticleList(() => {
-            return articles;
-          });
-          setAllPageNumbers(() => {
-            const totalPages = Math.ceil(articles.length / 10);
-
-            return [...Array(totalPages).keys()].map((index) => index + 1);
-          });
-        })
-        .then(() => {
-          setLoadMoreArticles(true);
+    setCurrentTopic(topic);
+    setVisibleArticles([]);
+    setCurrentPageNumber(1);
+    getAllArticles(sort, order, topic)
+      .then((articles) => {
+        setArticleList(() => {
+          return articles;
         });
-    }
-  }, [topic]);
+        setAllPageNumbers(() => {
+          const totalPages = Math.ceil(articles.length / 10);
+
+          return [...Array(totalPages).keys()].map((index) => index + 1);
+        });
+      })
+      .then(() => {
+        setLoadMoreArticles(true);
+      });
+  }, [topic, sort, order]);
 
   useEffect(() => {
     const updateVisibleArticles = () => {

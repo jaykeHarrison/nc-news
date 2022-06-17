@@ -4,11 +4,12 @@ const ncNewsAPI = axios.create({
   baseURL: "https://jaykeharrison-nc-news.herokuapp.com/api",
 });
 
-export const getAllArticles = (topic) => {
-  let path = "/articles";
+export const getAllArticles = (sort_by, order, topic) => {
+  let path = `/articles/?sort_by=${sort_by}&order=${order}`;
   if (topic !== undefined) {
-    path += `/?topic=${topic}`;
+    path += `&topic=${topic}`;
   }
+
   return ncNewsAPI.get(path).then((response) => {
     return response.data.articles;
   });
