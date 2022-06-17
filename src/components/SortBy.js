@@ -5,7 +5,6 @@ const SortBy = () => {
   const [sort, setSort] = useState("created_at");
   const [order, setOrder] = useState("DESC");
 
-  console.log(sort, order);
   const handleSelect = (event) => {
     setSort(event.target.value);
   };

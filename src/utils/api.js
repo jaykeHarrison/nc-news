@@ -10,7 +10,6 @@ export const getAllArticles = (sort_by, order, topic) => {
     path += `&topic=${topic}`;
   }
 
-  console.log(path);
   return ncNewsAPI.get(path).then((response) => {
     return response.data.articles;
   });
