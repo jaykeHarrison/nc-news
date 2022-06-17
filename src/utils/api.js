@@ -82,3 +82,11 @@ export const deleteComment = (comment_id) => {
     }
   });
 };
+
+export const getHotAndNotArticles = () => {
+  return ncNewsAPI
+    .get("/articles/?sort_by=votes&order=DESC")
+    .then(({ data: { articles } }) => {
+      return { hot: articles[0], not: articles[articles.length - 1] };
+    });
+};

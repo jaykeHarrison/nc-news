@@ -16,7 +16,7 @@ const Home = () => {
       <SignedInStatus />
       {!signedInUser ? <UserDropDownList /> : null}
       <Link to="/articles">
-        <p>VIEW ALL ARTICLES</p>
+        <p id="view-all-articles">VIEW ALL ARTICLES</p>
       </Link>
     </>
   );
